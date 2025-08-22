@@ -1,3 +1,4 @@
+from db.connection import get_connection
 from models.book import Book
 from models.users import Librarian, Member, User
 
@@ -6,7 +7,7 @@ class Library:
         self.name = name
         self.books:  list[Book] = []
         self.users: list[User] = []
-        self.favorite_book = Book("sjyk", "asset", "days")
+        
 
     def add_book(self, book: Book) -> None :
         self.books.append(book)
@@ -20,10 +21,15 @@ class Library:
                 return book
         return None
     
+    def get_all_books(self) -> list[Book]:
+        connection = get_connection()
+        cursor = connection.cursor(dictionary=True)
+        query = "SELECT * FROM books;"
+        cursor.execute(query)
+        booksData = cursor.fetchALL()
+        return [Book(**book) for book in booksData]
 
-new_book = Book("Deep dive into design pattern", "John Doe", "1838482468")
-new_user = Member("Leykun")
 
-new_library = Library("New_Library")
 
-new_library.add_book(new_book)
+
+
