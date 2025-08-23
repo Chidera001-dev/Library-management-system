@@ -48,8 +48,8 @@ def populate_books_table():
             """
             cursor.execute(
                 query,
-                (
-                    book.book_id,
+                (  
+                    book.id,
                     book.isbn,
                     book.title,
                     book.author,

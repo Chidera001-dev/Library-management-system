@@ -4,7 +4,6 @@ from uuid import uuid4
 class Book:
     def __init__(
         self,
-        book_id: str,
         isbn: str,
         title: str,
         author: str,
@@ -12,10 +11,10 @@ class Book:
         year: int,
         genre: str,
         copies: int,
-        available: int ,
-        status: str,
-    ) -> None:
-        self.book_id = book_id
+        available: int = 1,
+        status: str = "Available",
+    ):
+        self.id = str(uuid4())
         self.title = title
         self.author = author
         self.isbn = isbn
@@ -27,9 +26,11 @@ class Book:
         self.status = status
 
     def __repr__(self):
-        return f"id: {self.book_id} | title: {self.title} | author: {self.author} | available: {self.available}"
-           # f"publisher: {self.publisher} | year: {self.year} | genre: {self.genre} | "
-            #f"available: {self.available}"
+        return (
+            f"id: {self.id} | title: {self.title} | author: {self.author} | "
+            f"publisher: {self.publisher} | year: {self.year} | genre: {self.genre} | "
+            f"available: {self.available}"
+        )
 
         
     

@@ -34,4 +34,3 @@ def get_all_books():
     books_data = cursor.fetchall()
 
     return jsonify(books_data)
-
